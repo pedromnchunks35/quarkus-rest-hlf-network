@@ -1,0 +1,7 @@
+org/openapi/quarkus/openapi_yml/api/DefaultApi.class
+.openapi-generator-ignore
+.openapi-generator/VERSION
+org/openapi/quarkus/openapi_yml/model/QuarkusOpenApiGeneratorFruit$QuarkusOpenApiGeneratorFruitQueryParam.class
+.openapi-generator/FILES
+hlf/network/mapper/BlockMapperImpl.class
+org/openapi/quarkus/openapi_yml/model/QuarkusOpenApiGeneratorFruit.class
