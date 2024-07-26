@@ -1,4 +1,4 @@
-package hlf.network.controller.Channels.GET;
+package hlf.network.controller.Channel.GET;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.core.Response;

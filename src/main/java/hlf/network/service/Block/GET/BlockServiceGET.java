@@ -24,22 +24,26 @@ public class BlockServiceGET {
     }
 
     @GET
-    @Path("/blocksPerMinute")
+    @Path("/blocksPerMinute/{start}/{end}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getBlocksPerMinute() {
-        return Response.ok().status(Response.Status.ACCEPTED).build();
+    public Response getBlocksPerMinute(@PathParam("start") int start, @PathParam("end") int end) {
+        return blockControllerGET.getBlocksPerMinute(start, end);
     }
 
     @GET
     @Path("getBlocks/tree/{page}/{size}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getBlocksTree(@PathParam("page") int page, @PathParam("size") int size) {
-        return Response.ok().status(Response.Status.ACCEPTED).build();
+        return blockControllerGET.getBlocksTree(page, size);
     }
 
     @GET
     @Path("getBlocks/list/{page}/{size}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getBlocksList(@PathParam("page") int page, @PathParam("size") int size) {
-        return Response.ok().status(Response.Status.ACCEPTED).build();
+        return blockControllerGET.getBlocksList(page, size);
     }
 }

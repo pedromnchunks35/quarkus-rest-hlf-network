@@ -1,5 +1,8 @@
 package hlf.network.controller.Block.GET;
 
+import java.util.List;
+
+import hlf.network.dto.BlockTreeListDTO;
 import hlf.network.repository.BlockRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -17,8 +20,8 @@ public class BlockControllerGET implements BlockControllerInterfaceGET {
 
     @Override
     public Response getBlocksTree(int page, int size) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getBlocksTree'");
+        List<BlockTreeListDTO> result = blockRepository.getBlockTreeList(page, size);
+        return Response.ok(result).status(Response.Status.ACCEPTED).build();
     }
 
     @Override
