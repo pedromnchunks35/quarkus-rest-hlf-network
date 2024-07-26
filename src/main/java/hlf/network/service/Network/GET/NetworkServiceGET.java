@@ -30,4 +30,12 @@ public class NetworkServiceGET {
     public Response getPeerList(int page, int size) {
         return networkControllerGET.getPeerList(page, size);
     }
+
+    @GET
+    @Path("/nodes")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getNodesNumber() {
+        return networkControllerGET.getNumberOfNodes();
+    }
 }

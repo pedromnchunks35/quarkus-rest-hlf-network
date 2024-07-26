@@ -23,8 +23,11 @@ public class TransactionControllerGET implements TransactionControllerInterfaceG
 
     @Override
     public Response getTransactionsPerMinute(int start, int end) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTransactionsPerMinute'");
+        if (start < 0 || end < 0 || start > end) {
+            return Response.ok("Please provide a valid start and end").status(Response.Status.BAD_REQUEST).build();
+        }
+        Double result = transactionRepository.getTransactionsPerMinute(start, end);
+        return Response.ok(result).status(Response.Status.ACCEPTED).build();
     }
 
     @Override
