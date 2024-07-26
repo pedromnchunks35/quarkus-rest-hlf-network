@@ -2,7 +2,6 @@ package hlf.network.repository;
 
 import hlf.network.entity.Block;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
-
-public class BlockRepository implements PanacheRepositoryBase<Block, Integer> {
-
-}
+import jakarta.enterprise.context.ApplicationScoped;
+@ApplicationScoped
+public class BlockRepository implements PanacheRepositoryBase<Block, Integer> {}

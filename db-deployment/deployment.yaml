@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-postgresql-block-explorer-pod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: db-postgresql-block-explorer
+  template:
+    metadata:
+      labels:
+        deployment: db-postgresql-block-explorer
+        service: db-postgresql-block-explorer
+    spec:
+      containers:
+        - name: db-postgresql-block-explorer-container
+          image: pedrosilvamnchunks/bdbpostgresqlexplorer
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "12341234"
+            - name: POSTGRES_USER 
+              value: root
+            - name: POSTGRES_DB
+              value: "hlf-network"

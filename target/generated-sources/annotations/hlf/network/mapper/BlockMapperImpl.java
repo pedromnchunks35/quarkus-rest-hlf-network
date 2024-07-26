@@ -2,8 +2,10 @@ package hlf.network.mapper;
 
 import hlf.network.dto.BlockDTO;
 import hlf.network.dto.ChaincodeDTO;
+import hlf.network.dto.ChaincodeEventDTO;
 import hlf.network.dto.ChannelDTO;
 import hlf.network.dto.CreatorDTO;
+import hlf.network.dto.EndorsementDTO;
 import hlf.network.dto.NetworkDTO;
 import hlf.network.dto.OperationArgDTO;
 import hlf.network.dto.OperationDTO;
@@ -12,8 +14,10 @@ import hlf.network.dto.TxValidationTypeDTO;
 import hlf.network.dto.TypeTransactionDTO;
 import hlf.network.entity.Block;
 import hlf.network.entity.Chaincode;
+import hlf.network.entity.ChaincodeEvent;
 import hlf.network.entity.Channel;
 import hlf.network.entity.Creator;
+import hlf.network.entity.Endorsement;
 import hlf.network.entity.Network;
 import hlf.network.entity.Operation;
 import hlf.network.entity.OperationArg;
@@ -27,8 +31,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-07-25T15:49:21+0200",
-    comments = "version: 1.3.1.Final, compiler: javac, environment: Java 21.0.4 (Oracle Corporation)"
+    date = "2024-07-26T14:20:15+0200",
+    comments = "version: 1.3.1.Final, compiler: javac, environment: Java 21.0.3 (Oracle Corporation)"
 )
 public class BlockMapperImpl implements BlockMapper {
 
@@ -185,6 +189,33 @@ public class BlockMapperImpl implements BlockMapper {
         return txValidationType;
     }
 
+    protected Endorsement endorsementDTOToEndorsement(EndorsementDTO endorsementDTO) {
+        if ( endorsementDTO == null ) {
+            return null;
+        }
+
+        Endorsement endorsement = new Endorsement();
+
+        endorsement.setId( endorsementDTO.getId() );
+        endorsement.setTransaction( transactionDTOToTransaction( endorsementDTO.getTransaction() ) );
+        endorsement.setCreator( creatorDTOToCreator( endorsementDTO.getCreator() ) );
+
+        return endorsement;
+    }
+
+    protected List<Endorsement> endorsementDTOListToEndorsementList(List<EndorsementDTO> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<Endorsement> list1 = new ArrayList<Endorsement>( list.size() );
+        for ( EndorsementDTO endorsementDTO : list ) {
+            list1.add( endorsementDTOToEndorsement( endorsementDTO ) );
+        }
+
+        return list1;
+    }
+
     protected Creator creatorDTOToCreator(CreatorDTO creatorDTO) {
         if ( creatorDTO == null ) {
             return null;
@@ -199,8 +230,22 @@ public class BlockMapperImpl implements BlockMapper {
             creator.setIdBytes( Arrays.copyOf( idBytes, idBytes.length ) );
         }
         creator.setTransactions( transactionDTOListToTransactionList( creatorDTO.getTransactions() ) );
+        creator.setEndorsements( endorsementDTOListToEndorsementList( creatorDTO.getEndorsements() ) );
 
         return creator;
+    }
+
+    protected List<Operation> operationDTOListToOperationList(List<OperationDTO> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<Operation> list1 = new ArrayList<Operation>( list.size() );
+        for ( OperationDTO operationDTO : list ) {
+            list1.add( operationDTOToOperation( operationDTO ) );
+        }
+
+        return list1;
     }
 
     protected Chaincode chaincodeDTOToChaincode(ChaincodeDTO chaincodeDTO) {
@@ -212,6 +257,7 @@ public class BlockMapperImpl implements BlockMapper {
 
         chaincode.setId( chaincodeDTO.getId() );
         chaincode.setChaincodeID( chaincodeDTO.getChaincodeID() );
+        chaincode.setOperations( operationDTOListToOperationList( chaincodeDTO.getOperations() ) );
 
         return chaincode;
     }
@@ -259,6 +305,39 @@ public class BlockMapperImpl implements BlockMapper {
         return operation;
     }
 
+    protected ChaincodeEvent chaincodeEventDTOToChaincodeEvent(ChaincodeEventDTO chaincodeEventDTO) {
+        if ( chaincodeEventDTO == null ) {
+            return null;
+        }
+
+        ChaincodeEvent chaincodeEvent = new ChaincodeEvent();
+
+        chaincodeEvent.setId( chaincodeEventDTO.getId() );
+        chaincodeEvent.setTransaction( transactionDTOToTransaction( chaincodeEventDTO.getTransaction() ) );
+        chaincodeEvent.setBlock( toEntity( chaincodeEventDTO.getBlock() ) );
+        chaincodeEvent.setChaincode( chaincodeDTOToChaincode( chaincodeEventDTO.getChaincode() ) );
+        chaincodeEvent.setEventName( chaincodeEventDTO.getEventName() );
+        byte[] content = chaincodeEventDTO.getContent();
+        if ( content != null ) {
+            chaincodeEvent.setContent( Arrays.copyOf( content, content.length ) );
+        }
+
+        return chaincodeEvent;
+    }
+
+    protected List<ChaincodeEvent> chaincodeEventDTOListToChaincodeEventList(List<ChaincodeEventDTO> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<ChaincodeEvent> list1 = new ArrayList<ChaincodeEvent>( list.size() );
+        for ( ChaincodeEventDTO chaincodeEventDTO : list ) {
+            list1.add( chaincodeEventDTOToChaincodeEvent( chaincodeEventDTO ) );
+        }
+
+        return list1;
+    }
+
     protected Transaction transactionDTOToTransaction(TransactionDTO transactionDTO) {
         if ( transactionDTO == null ) {
             return null;
@@ -277,6 +356,8 @@ public class BlockMapperImpl implements BlockMapper {
         if ( payload != null ) {
             transaction.setPayload( Arrays.copyOf( payload, payload.length ) );
         }
+        transaction.setEndorsements( endorsementDTOListToEndorsementList( transactionDTO.getEndorsements() ) );
+        transaction.setChaincodeEvents( chaincodeEventDTOListToChaincodeEventList( transactionDTO.getChaincodeEvents() ) );
 
         return transaction;
     }
@@ -350,6 +431,33 @@ public class BlockMapperImpl implements BlockMapper {
         return txValidationTypeDTO;
     }
 
+    protected EndorsementDTO endorsementToEndorsementDTO(Endorsement endorsement) {
+        if ( endorsement == null ) {
+            return null;
+        }
+
+        EndorsementDTO endorsementDTO = new EndorsementDTO();
+
+        endorsementDTO.setId( endorsement.getId() );
+        endorsementDTO.setTransaction( transactionToTransactionDTO( endorsement.getTransaction() ) );
+        endorsementDTO.setCreator( creatorToCreatorDTO( endorsement.getCreator() ) );
+
+        return endorsementDTO;
+    }
+
+    protected List<EndorsementDTO> endorsementListToEndorsementDTOList(List<Endorsement> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<EndorsementDTO> list1 = new ArrayList<EndorsementDTO>( list.size() );
+        for ( Endorsement endorsement : list ) {
+            list1.add( endorsementToEndorsementDTO( endorsement ) );
+        }
+
+        return list1;
+    }
+
     protected CreatorDTO creatorToCreatorDTO(Creator creator) {
         if ( creator == null ) {
             return null;
@@ -364,8 +472,22 @@ public class BlockMapperImpl implements BlockMapper {
             creatorDTO.setIdBytes( Arrays.copyOf( idBytes, idBytes.length ) );
         }
         creatorDTO.setTransactions( transactionListToTransactionDTOList( creator.getTransactions() ) );
+        creatorDTO.setEndorsements( endorsementListToEndorsementDTOList( creator.getEndorsements() ) );
 
         return creatorDTO;
+    }
+
+    protected List<OperationDTO> operationListToOperationDTOList(List<Operation> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<OperationDTO> list1 = new ArrayList<OperationDTO>( list.size() );
+        for ( Operation operation : list ) {
+            list1.add( operationToOperationDTO( operation ) );
+        }
+
+        return list1;
     }
 
     protected ChaincodeDTO chaincodeToChaincodeDTO(Chaincode chaincode) {
@@ -377,6 +499,7 @@ public class BlockMapperImpl implements BlockMapper {
 
         chaincodeDTO.setId( chaincode.getId() );
         chaincodeDTO.setChaincodeID( chaincode.getChaincodeID() );
+        chaincodeDTO.setOperations( operationListToOperationDTOList( chaincode.getOperations() ) );
 
         return chaincodeDTO;
     }
@@ -424,6 +547,39 @@ public class BlockMapperImpl implements BlockMapper {
         return operationDTO;
     }
 
+    protected ChaincodeEventDTO chaincodeEventToChaincodeEventDTO(ChaincodeEvent chaincodeEvent) {
+        if ( chaincodeEvent == null ) {
+            return null;
+        }
+
+        ChaincodeEventDTO chaincodeEventDTO = new ChaincodeEventDTO();
+
+        chaincodeEventDTO.setId( chaincodeEvent.getId() );
+        chaincodeEventDTO.setTransaction( transactionToTransactionDTO( chaincodeEvent.getTransaction() ) );
+        chaincodeEventDTO.setBlock( toDto( chaincodeEvent.getBlock() ) );
+        chaincodeEventDTO.setChaincode( chaincodeToChaincodeDTO( chaincodeEvent.getChaincode() ) );
+        chaincodeEventDTO.setEventName( chaincodeEvent.getEventName() );
+        byte[] content = chaincodeEvent.getContent();
+        if ( content != null ) {
+            chaincodeEventDTO.setContent( Arrays.copyOf( content, content.length ) );
+        }
+
+        return chaincodeEventDTO;
+    }
+
+    protected List<ChaincodeEventDTO> chaincodeEventListToChaincodeEventDTOList(List<ChaincodeEvent> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<ChaincodeEventDTO> list1 = new ArrayList<ChaincodeEventDTO>( list.size() );
+        for ( ChaincodeEvent chaincodeEvent : list ) {
+            list1.add( chaincodeEventToChaincodeEventDTO( chaincodeEvent ) );
+        }
+
+        return list1;
+    }
+
     protected TransactionDTO transactionToTransactionDTO(Transaction transaction) {
         if ( transaction == null ) {
             return null;
@@ -442,6 +598,8 @@ public class BlockMapperImpl implements BlockMapper {
         if ( payload != null ) {
             transactionDTO.setPayload( Arrays.copyOf( payload, payload.length ) );
         }
+        transactionDTO.setEndorsements( endorsementListToEndorsementDTOList( transaction.getEndorsements() ) );
+        transactionDTO.setChaincodeEvents( chaincodeEventListToChaincodeEventDTOList( transaction.getChaincodeEvents() ) );
 
         return transactionDTO;
     }
