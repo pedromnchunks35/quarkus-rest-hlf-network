@@ -11,7 +11,6 @@ C:\Users\psousaesilva\Documents\quarkus-rest-hlf-network\src\main\java\hlf\netwo
 C:\Users\psousaesilva\Documents\quarkus-rest-hlf-network\src\main\java\hlf\network\converter\ByteArrayToStringConverter.java
 C:\Users\psousaesilva\Documents\quarkus-rest-hlf-network\src\main\java\hlf\network\dto\BlockDTO.java
 C:\Users\psousaesilva\Documents\quarkus-rest-hlf-network\src\main\java\hlf\network\dto\BlockListDTO.java
-C:\Users\psousaesilva\Documents\quarkus-rest-hlf-network\src\main\java\hlf\network\dto\BlockTreeListDTO.java
 C:\Users\psousaesilva\Documents\quarkus-rest-hlf-network\src\main\java\hlf\network\dto\ChaincodeDTO.java
 C:\Users\psousaesilva\Documents\quarkus-rest-hlf-network\src\main\java\hlf\network\dto\ChaincodeEventDTO.java
 C:\Users\psousaesilva\Documents\quarkus-rest-hlf-network\src\main\java\hlf\network\dto\ChaincodeListDTO.java
@@ -26,6 +25,7 @@ C:\Users\psousaesilva\Documents\quarkus-rest-hlf-network\src\main\java\hlf\netwo
 C:\Users\psousaesilva\Documents\quarkus-rest-hlf-network\src\main\java\hlf\network\dto\TransactionByOrgDTO.java
 C:\Users\psousaesilva\Documents\quarkus-rest-hlf-network\src\main\java\hlf\network\dto\TransactionDTO.java
 C:\Users\psousaesilva\Documents\quarkus-rest-hlf-network\src\main\java\hlf\network\dto\TransactionsListDTO.java
+C:\Users\psousaesilva\Documents\quarkus-rest-hlf-network\src\main\java\hlf\network\dto\TransactionTreeListDTO.java
 C:\Users\psousaesilva\Documents\quarkus-rest-hlf-network\src\main\java\hlf\network\dto\TxValidationTypeDTO.java
 C:\Users\psousaesilva\Documents\quarkus-rest-hlf-network\src\main\java\hlf\network\dto\TypeTransactionDTO.java
 C:\Users\psousaesilva\Documents\quarkus-rest-hlf-network\src\main\java\hlf\network\entity\Block.java

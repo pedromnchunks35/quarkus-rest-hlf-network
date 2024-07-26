@@ -31,7 +31,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-07-26T14:20:21+0200",
+    date = "2024-07-26T17:45:44+0200",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 21.0.3 (Oracle Corporation)"
 )
 public class OperationMapperImpl implements OperationMapper {

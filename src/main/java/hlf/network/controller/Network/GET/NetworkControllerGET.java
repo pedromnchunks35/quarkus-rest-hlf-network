@@ -18,4 +18,10 @@ public class NetworkControllerGET implements NetworkControllerInterfaceGET {
         throw new UnsupportedOperationException("Unimplemented method 'getPeerList'");
     }
 
+    @Override
+    public Response getNumberOfNodes() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getNumberOfNodes'");
+    }
+
 }
