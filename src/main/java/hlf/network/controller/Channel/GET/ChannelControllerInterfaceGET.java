@@ -1,4 +1,4 @@
-package hlf.network.controller.Channels.GET;
+package hlf.network.controller.Channel.GET;
 
 import jakarta.ws.rs.core.Response;
 

@@ -1,7 +1,8 @@
 package hlf.network.repository;
 
-import java.util.Optional;
+import java.util.List;
 
+import hlf.network.dto.BlockTreeListDTO;
 import hlf.network.entity.Block;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -32,5 +33,26 @@ public class BlockRepository implements PanacheRepositoryBase<Block, Integer> {
         } catch (Exception e) {
             return 0.0;
         }
+    }
+
+    /**
+     * @param page, the page number
+     * @param size, the size that the page must have
+     * @return
+     */
+    public List<BlockTreeListDTO> getBlockTreeList(int page, int size) {
+        String query = "SELECT new hlf.network.entity.Block(T.block.blockNumber, C.channelName, T.block.nextHash, T.timestampTx) "
+                +
+                "FROM Transaction T " +
+                "JOIN T.block B " +
+                "JOIN B.channel C " +
+                "WHERE T.timestampTx = (" +
+                "   SELECT MIN(T2.timestampTx) " +
+                "   FROM Transaction T2 " +
+                "   WHERE T2.block.blockNumber = T.block.blockNumber" +
+                ")";
+        List<BlockTreeListDTO> result = entityManager.createQuery(query, BlockTreeListDTO.class)
+                .setFirstResult((page - 1) * size).setMaxResults(size).getResultList();
+        return result;
     }
 }

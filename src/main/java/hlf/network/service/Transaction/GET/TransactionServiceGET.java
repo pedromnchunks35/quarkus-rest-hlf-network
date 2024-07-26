@@ -1,6 +1,6 @@
 package hlf.network.service.Transaction.GET;
 
-import hlf.network.controller.Chaincode.GET.ChaincodeControllerGET;
+import hlf.network.controller.Transaction.GET.TransactionControllerGET;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -13,14 +13,14 @@ import jakarta.ws.rs.core.Response;
 @Path("/transaction")
 public class TransactionServiceGET {
     @Inject
-    ChaincodeControllerGET chaincodeControllerGET;
+    TransactionControllerGET transactionControllerGET;
 
     @GET
     @Path("/numberOfTransactions")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getNumberOfTransactions() {
-        return chaincodeControllerGET.numberOfChaincodes();
+        return transactionControllerGET.getNumberOfTransactions();
     }
 
     @GET
@@ -28,7 +28,7 @@ public class TransactionServiceGET {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTransactionsPerMinute(@PathParam("start") int start, @PathParam("end") int end) {
-        return Response.ok().status(Response.Status.ACCEPTED).build();
+        return transactionControllerGET.getTransactionsPerMinute(start, end);
     }
 
     @GET
@@ -36,7 +36,7 @@ public class TransactionServiceGET {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTransactionsPerOrganization() {
-        return Response.ok().status(Response.Status.ACCEPTED).build();
+        return transactionControllerGET.getTransactionsPerOrganization();
     }
 
     @GET
@@ -44,6 +44,6 @@ public class TransactionServiceGET {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTransactionsList(@PathParam("page") int page, @PathParam("size") int size) {
-        return Response.ok().status(Response.Status.ACCEPTED).build();
+        return transactionControllerGET.getTransactionsList(page, size);
     }
 }

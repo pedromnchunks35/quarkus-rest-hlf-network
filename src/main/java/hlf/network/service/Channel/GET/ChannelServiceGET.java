@@ -1,6 +1,6 @@
 package hlf.network.service.Channel.GET;
 
-import hlf.network.controller.Channels.GET.ChannelControllerGET;
+import hlf.network.controller.Channel.GET.ChannelControllerGET;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;

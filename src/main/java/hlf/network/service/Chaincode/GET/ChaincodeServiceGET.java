@@ -27,6 +27,6 @@ public class ChaincodeServiceGET {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getChaincodesList(@PathParam("page") int page, @PathParam("size") int size) {
-        return Response.ok().status(Response.Status.ACCEPTED).build();
+        return chaincodeControllerGET.getChaincodesList(page, size);
     }
 }
