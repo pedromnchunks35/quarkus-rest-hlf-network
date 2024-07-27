@@ -31,8 +31,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-07-26T22:41:01+0200",
-    comments = "version: 1.3.1.Final, compiler: javac, environment: Java 21.0.4 (Oracle Corporation)"
+    date = "2024-07-27T15:45:09+0200",
+    comments = "version: 1.3.1.Final, compiler: Eclipse JDT (IDE) 3.39.0.v20240620-1855, environment: Java 17.0.11 (Eclipse Adoptium)"
 )
 public class OperationArgMapperImpl implements OperationArgMapper {
 
@@ -44,9 +44,9 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         OperationArg operationArg = new OperationArg();
 
+        operationArg.setArgument( OperationArgDTO.getArgument() );
         operationArg.setId( OperationArgDTO.getId() );
         operationArg.setOperation( operationDTOToOperation( OperationArgDTO.getOperation() ) );
-        operationArg.setArgument( OperationArgDTO.getArgument() );
 
         return operationArg;
     }
@@ -59,9 +59,9 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         OperationArgDTO operationArgDTO = new OperationArgDTO();
 
+        operationArgDTO.setArgument( OperationArg.getArgument() );
         operationArgDTO.setId( OperationArg.getId() );
         operationArgDTO.setOperation( operationToOperationDTO( OperationArg.getOperation() ) );
-        operationArgDTO.setArgument( OperationArg.getArgument() );
 
         return operationArgDTO;
     }
@@ -114,8 +114,8 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         Chaincode chaincode = new Chaincode();
 
-        chaincode.setId( chaincodeDTO.getId() );
         chaincode.setChaincodeID( chaincodeDTO.getChaincodeID() );
+        chaincode.setId( chaincodeDTO.getId() );
         chaincode.setOperations( operationDTOListToOperationList( chaincodeDTO.getOperations() ) );
 
         return chaincode;
@@ -141,9 +141,9 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         Channel channel = new Channel();
 
-        channel.setId( channelDTO.getId() );
-        channel.setChannelName( channelDTO.getChannelName() );
         channel.setBlocks( blockDTOListToBlockList( channelDTO.getBlocks() ) );
+        channel.setChannelName( channelDTO.getChannelName() );
+        channel.setId( channelDTO.getId() );
 
         return channel;
     }
@@ -155,9 +155,9 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         Network network = new Network();
 
+        network.setBlocks( blockDTOListToBlockList( networkDTO.getBlocks() ) );
         network.setId( networkDTO.getId() );
         network.setIp( networkDTO.getIp() );
-        network.setBlocks( blockDTOListToBlockList( networkDTO.getBlocks() ) );
 
         return network;
     }
@@ -184,50 +184,55 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         block.setBlockNumber( blockDTO.getBlockNumber() );
         block.setChannel( channelDTOToChannel( blockDTO.getChannel() ) );
-        block.setNetwork( networkDTOToNetwork( blockDTO.getNetwork() ) );
-        byte[] prevHash = blockDTO.getPrevHash();
-        if ( prevHash != null ) {
-            block.setPrevHash( Arrays.copyOf( prevHash, prevHash.length ) );
+        byte[] data = blockDTO.getData();
+        if ( data != null ) {
+            block.setData( Arrays.copyOf( data, data.length ) );
         }
+        block.setNetwork( networkDTOToNetwork( blockDTO.getNetwork() ) );
         byte[] nextHash = blockDTO.getNextHash();
         if ( nextHash != null ) {
             block.setNextHash( Arrays.copyOf( nextHash, nextHash.length ) );
         }
-        byte[] data = blockDTO.getData();
-        if ( data != null ) {
-            block.setData( Arrays.copyOf( data, data.length ) );
+        byte[] prevHash = blockDTO.getPrevHash();
+        if ( prevHash != null ) {
+            block.setPrevHash( Arrays.copyOf( prevHash, prevHash.length ) );
         }
         block.setTransactions( transactionDTOListToTransactionList( blockDTO.getTransactions() ) );
 
         return block;
     }
 
-    protected TypeTransaction typeTransactionDTOToTypeTransaction(TypeTransactionDTO typeTransactionDTO) {
-        if ( typeTransactionDTO == null ) {
+    protected ChaincodeEvent chaincodeEventDTOToChaincodeEvent(ChaincodeEventDTO chaincodeEventDTO) {
+        if ( chaincodeEventDTO == null ) {
             return null;
         }
 
-        TypeTransaction typeTransaction = new TypeTransaction();
+        ChaincodeEvent chaincodeEvent = new ChaincodeEvent();
 
-        typeTransaction.setId( typeTransactionDTO.getId() );
-        typeTransaction.setDescriptionType( typeTransactionDTO.getDescriptionType() );
-        typeTransaction.setTransactions( transactionDTOListToTransactionList( typeTransactionDTO.getTransactions() ) );
+        chaincodeEvent.setBlock( blockDTOToBlock( chaincodeEventDTO.getBlock() ) );
+        chaincodeEvent.setChaincode( chaincodeDTOToChaincode( chaincodeEventDTO.getChaincode() ) );
+        byte[] content = chaincodeEventDTO.getContent();
+        if ( content != null ) {
+            chaincodeEvent.setContent( Arrays.copyOf( content, content.length ) );
+        }
+        chaincodeEvent.setEventName( chaincodeEventDTO.getEventName() );
+        chaincodeEvent.setId( chaincodeEventDTO.getId() );
+        chaincodeEvent.setTransaction( transactionDTOToTransaction( chaincodeEventDTO.getTransaction() ) );
 
-        return typeTransaction;
+        return chaincodeEvent;
     }
 
-    protected TxValidationType txValidationTypeDTOToTxValidationType(TxValidationTypeDTO txValidationTypeDTO) {
-        if ( txValidationTypeDTO == null ) {
+    protected List<ChaincodeEvent> chaincodeEventDTOListToChaincodeEventList(List<ChaincodeEventDTO> list) {
+        if ( list == null ) {
             return null;
         }
 
-        TxValidationType txValidationType = new TxValidationType();
+        List<ChaincodeEvent> list1 = new ArrayList<ChaincodeEvent>( list.size() );
+        for ( ChaincodeEventDTO chaincodeEventDTO : list ) {
+            list1.add( chaincodeEventDTOToChaincodeEvent( chaincodeEventDTO ) );
+        }
 
-        txValidationType.setId( txValidationTypeDTO.getId() );
-        txValidationType.setDescriptionType( txValidationTypeDTO.getDescriptionType() );
-        txValidationType.setTransactions( transactionDTOListToTransactionList( txValidationTypeDTO.getTransactions() ) );
-
-        return txValidationType;
+        return list1;
     }
 
     protected Endorsement endorsementDTOToEndorsement(EndorsementDTO endorsementDTO) {
@@ -237,9 +242,9 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         Endorsement endorsement = new Endorsement();
 
+        endorsement.setCreator( creatorDTOToCreator( endorsementDTO.getCreator() ) );
         endorsement.setId( endorsementDTO.getId() );
         endorsement.setTransaction( transactionDTOToTransaction( endorsementDTO.getTransaction() ) );
-        endorsement.setCreator( creatorDTOToCreator( endorsementDTO.getCreator() ) );
 
         return endorsement;
     }
@@ -264,49 +269,44 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         Creator creator = new Creator();
 
+        creator.setEndorsements( endorsementDTOListToEndorsementList( creatorDTO.getEndorsements() ) );
         creator.setId( creatorDTO.getId() );
-        creator.setMspId( creatorDTO.getMspId() );
         byte[] idBytes = creatorDTO.getIdBytes();
         if ( idBytes != null ) {
             creator.setIdBytes( Arrays.copyOf( idBytes, idBytes.length ) );
         }
+        creator.setMspId( creatorDTO.getMspId() );
         creator.setTransactions( transactionDTOListToTransactionList( creatorDTO.getTransactions() ) );
-        creator.setEndorsements( endorsementDTOListToEndorsementList( creatorDTO.getEndorsements() ) );
 
         return creator;
     }
 
-    protected ChaincodeEvent chaincodeEventDTOToChaincodeEvent(ChaincodeEventDTO chaincodeEventDTO) {
-        if ( chaincodeEventDTO == null ) {
+    protected TxValidationType txValidationTypeDTOToTxValidationType(TxValidationTypeDTO txValidationTypeDTO) {
+        if ( txValidationTypeDTO == null ) {
             return null;
         }
 
-        ChaincodeEvent chaincodeEvent = new ChaincodeEvent();
+        TxValidationType txValidationType = new TxValidationType();
 
-        chaincodeEvent.setId( chaincodeEventDTO.getId() );
-        chaincodeEvent.setTransaction( transactionDTOToTransaction( chaincodeEventDTO.getTransaction() ) );
-        chaincodeEvent.setBlock( blockDTOToBlock( chaincodeEventDTO.getBlock() ) );
-        chaincodeEvent.setChaincode( chaincodeDTOToChaincode( chaincodeEventDTO.getChaincode() ) );
-        chaincodeEvent.setEventName( chaincodeEventDTO.getEventName() );
-        byte[] content = chaincodeEventDTO.getContent();
-        if ( content != null ) {
-            chaincodeEvent.setContent( Arrays.copyOf( content, content.length ) );
-        }
+        txValidationType.setDescriptionType( txValidationTypeDTO.getDescriptionType() );
+        txValidationType.setId( txValidationTypeDTO.getId() );
+        txValidationType.setTransactions( transactionDTOListToTransactionList( txValidationTypeDTO.getTransactions() ) );
 
-        return chaincodeEvent;
+        return txValidationType;
     }
 
-    protected List<ChaincodeEvent> chaincodeEventDTOListToChaincodeEventList(List<ChaincodeEventDTO> list) {
-        if ( list == null ) {
+    protected TypeTransaction typeTransactionDTOToTypeTransaction(TypeTransactionDTO typeTransactionDTO) {
+        if ( typeTransactionDTO == null ) {
             return null;
         }
 
-        List<ChaincodeEvent> list1 = new ArrayList<ChaincodeEvent>( list.size() );
-        for ( ChaincodeEventDTO chaincodeEventDTO : list ) {
-            list1.add( chaincodeEventDTOToChaincodeEvent( chaincodeEventDTO ) );
-        }
+        TypeTransaction typeTransaction = new TypeTransaction();
 
-        return list1;
+        typeTransaction.setDescriptionType( typeTransactionDTO.getDescriptionType() );
+        typeTransaction.setId( typeTransactionDTO.getId() );
+        typeTransaction.setTransactions( transactionDTOListToTransactionList( typeTransactionDTO.getTransactions() ) );
+
+        return typeTransaction;
     }
 
     protected Transaction transactionDTOToTransaction(TransactionDTO transactionDTO) {
@@ -316,19 +316,19 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         Transaction transaction = new Transaction();
 
-        transaction.setTxId( transactionDTO.getTxId() );
         transaction.setBlock( blockDTOToBlock( transactionDTO.getBlock() ) );
-        transaction.setTimestampTx( transactionDTO.getTimestampTx() );
-        transaction.setTypeTransaction( typeTransactionDTOToTypeTransaction( transactionDTO.getTypeTransaction() ) );
-        transaction.setTxValidationType( txValidationTypeDTOToTxValidationType( transactionDTO.getTxValidationType() ) );
+        transaction.setChaincodeEvents( chaincodeEventDTOListToChaincodeEventList( transactionDTO.getChaincodeEvents() ) );
         transaction.setCreator( creatorDTOToCreator( transactionDTO.getCreator() ) );
+        transaction.setEndorsements( endorsementDTOListToEndorsementList( transactionDTO.getEndorsements() ) );
         transaction.setOperation( operationDTOToOperation( transactionDTO.getOperation() ) );
         byte[] payload = transactionDTO.getPayload();
         if ( payload != null ) {
             transaction.setPayload( Arrays.copyOf( payload, payload.length ) );
         }
-        transaction.setEndorsements( endorsementDTOListToEndorsementList( transactionDTO.getEndorsements() ) );
-        transaction.setChaincodeEvents( chaincodeEventDTOListToChaincodeEventList( transactionDTO.getChaincodeEvents() ) );
+        transaction.setTimestampTx( transactionDTO.getTimestampTx() );
+        transaction.setTxId( transactionDTO.getTxId() );
+        transaction.setTxValidationType( txValidationTypeDTOToTxValidationType( transactionDTO.getTxValidationType() ) );
+        transaction.setTypeTransaction( typeTransactionDTOToTypeTransaction( transactionDTO.getTypeTransaction() ) );
 
         return transaction;
     }
@@ -340,9 +340,9 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         Operation operation = new Operation();
 
-        operation.setId( operationDTO.getId() );
         operation.setChaincode( chaincodeDTOToChaincode( operationDTO.getChaincode() ) );
         operation.setChaincodeType( operationDTO.getChaincodeType() );
+        operation.setId( operationDTO.getId() );
         operation.setOperationArgs( toEntity( operationDTO.getOperationArgs() ) );
         operation.setTransactions( transactionDTOListToTransactionList( operationDTO.getTransactions() ) );
 
@@ -369,8 +369,8 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         ChaincodeDTO chaincodeDTO = new ChaincodeDTO();
 
-        chaincodeDTO.setId( chaincode.getId() );
         chaincodeDTO.setChaincodeID( chaincode.getChaincodeID() );
+        chaincodeDTO.setId( chaincode.getId() );
         chaincodeDTO.setOperations( operationListToOperationDTOList( chaincode.getOperations() ) );
 
         return chaincodeDTO;
@@ -396,9 +396,9 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         ChannelDTO channelDTO = new ChannelDTO();
 
-        channelDTO.setId( channel.getId() );
-        channelDTO.setChannelName( channel.getChannelName() );
         channelDTO.setBlocks( blockListToBlockDTOList( channel.getBlocks() ) );
+        channelDTO.setChannelName( channel.getChannelName() );
+        channelDTO.setId( channel.getId() );
 
         return channelDTO;
     }
@@ -410,9 +410,9 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         NetworkDTO networkDTO = new NetworkDTO();
 
+        networkDTO.setBlocks( blockListToBlockDTOList( network.getBlocks() ) );
         networkDTO.setId( network.getId() );
         networkDTO.setIp( network.getIp() );
-        networkDTO.setBlocks( blockListToBlockDTOList( network.getBlocks() ) );
 
         return networkDTO;
     }
@@ -439,50 +439,55 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         blockDTO.setBlockNumber( block.getBlockNumber() );
         blockDTO.setChannel( channelToChannelDTO( block.getChannel() ) );
-        blockDTO.setNetwork( networkToNetworkDTO( block.getNetwork() ) );
-        byte[] prevHash = block.getPrevHash();
-        if ( prevHash != null ) {
-            blockDTO.setPrevHash( Arrays.copyOf( prevHash, prevHash.length ) );
+        byte[] data = block.getData();
+        if ( data != null ) {
+            blockDTO.setData( Arrays.copyOf( data, data.length ) );
         }
+        blockDTO.setNetwork( networkToNetworkDTO( block.getNetwork() ) );
         byte[] nextHash = block.getNextHash();
         if ( nextHash != null ) {
             blockDTO.setNextHash( Arrays.copyOf( nextHash, nextHash.length ) );
         }
-        byte[] data = block.getData();
-        if ( data != null ) {
-            blockDTO.setData( Arrays.copyOf( data, data.length ) );
+        byte[] prevHash = block.getPrevHash();
+        if ( prevHash != null ) {
+            blockDTO.setPrevHash( Arrays.copyOf( prevHash, prevHash.length ) );
         }
         blockDTO.setTransactions( transactionListToTransactionDTOList( block.getTransactions() ) );
 
         return blockDTO;
     }
 
-    protected TypeTransactionDTO typeTransactionToTypeTransactionDTO(TypeTransaction typeTransaction) {
-        if ( typeTransaction == null ) {
+    protected ChaincodeEventDTO chaincodeEventToChaincodeEventDTO(ChaincodeEvent chaincodeEvent) {
+        if ( chaincodeEvent == null ) {
             return null;
         }
 
-        TypeTransactionDTO typeTransactionDTO = new TypeTransactionDTO();
+        ChaincodeEventDTO chaincodeEventDTO = new ChaincodeEventDTO();
 
-        typeTransactionDTO.setId( typeTransaction.getId() );
-        typeTransactionDTO.setDescriptionType( typeTransaction.getDescriptionType() );
-        typeTransactionDTO.setTransactions( transactionListToTransactionDTOList( typeTransaction.getTransactions() ) );
+        chaincodeEventDTO.setBlock( blockToBlockDTO( chaincodeEvent.getBlock() ) );
+        chaincodeEventDTO.setChaincode( chaincodeToChaincodeDTO( chaincodeEvent.getChaincode() ) );
+        byte[] content = chaincodeEvent.getContent();
+        if ( content != null ) {
+            chaincodeEventDTO.setContent( Arrays.copyOf( content, content.length ) );
+        }
+        chaincodeEventDTO.setEventName( chaincodeEvent.getEventName() );
+        chaincodeEventDTO.setId( chaincodeEvent.getId() );
+        chaincodeEventDTO.setTransaction( transactionToTransactionDTO( chaincodeEvent.getTransaction() ) );
 
-        return typeTransactionDTO;
+        return chaincodeEventDTO;
     }
 
-    protected TxValidationTypeDTO txValidationTypeToTxValidationTypeDTO(TxValidationType txValidationType) {
-        if ( txValidationType == null ) {
+    protected List<ChaincodeEventDTO> chaincodeEventListToChaincodeEventDTOList(List<ChaincodeEvent> list) {
+        if ( list == null ) {
             return null;
         }
 
-        TxValidationTypeDTO txValidationTypeDTO = new TxValidationTypeDTO();
+        List<ChaincodeEventDTO> list1 = new ArrayList<ChaincodeEventDTO>( list.size() );
+        for ( ChaincodeEvent chaincodeEvent : list ) {
+            list1.add( chaincodeEventToChaincodeEventDTO( chaincodeEvent ) );
+        }
 
-        txValidationTypeDTO.setId( txValidationType.getId() );
-        txValidationTypeDTO.setDescriptionType( txValidationType.getDescriptionType() );
-        txValidationTypeDTO.setTransactions( transactionListToTransactionDTOList( txValidationType.getTransactions() ) );
-
-        return txValidationTypeDTO;
+        return list1;
     }
 
     protected EndorsementDTO endorsementToEndorsementDTO(Endorsement endorsement) {
@@ -492,9 +497,9 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         EndorsementDTO endorsementDTO = new EndorsementDTO();
 
+        endorsementDTO.setCreator( creatorToCreatorDTO( endorsement.getCreator() ) );
         endorsementDTO.setId( endorsement.getId() );
         endorsementDTO.setTransaction( transactionToTransactionDTO( endorsement.getTransaction() ) );
-        endorsementDTO.setCreator( creatorToCreatorDTO( endorsement.getCreator() ) );
 
         return endorsementDTO;
     }
@@ -519,49 +524,44 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         CreatorDTO creatorDTO = new CreatorDTO();
 
+        creatorDTO.setEndorsements( endorsementListToEndorsementDTOList( creator.getEndorsements() ) );
         creatorDTO.setId( creator.getId() );
-        creatorDTO.setMspId( creator.getMspId() );
         byte[] idBytes = creator.getIdBytes();
         if ( idBytes != null ) {
             creatorDTO.setIdBytes( Arrays.copyOf( idBytes, idBytes.length ) );
         }
+        creatorDTO.setMspId( creator.getMspId() );
         creatorDTO.setTransactions( transactionListToTransactionDTOList( creator.getTransactions() ) );
-        creatorDTO.setEndorsements( endorsementListToEndorsementDTOList( creator.getEndorsements() ) );
 
         return creatorDTO;
     }
 
-    protected ChaincodeEventDTO chaincodeEventToChaincodeEventDTO(ChaincodeEvent chaincodeEvent) {
-        if ( chaincodeEvent == null ) {
+    protected TxValidationTypeDTO txValidationTypeToTxValidationTypeDTO(TxValidationType txValidationType) {
+        if ( txValidationType == null ) {
             return null;
         }
 
-        ChaincodeEventDTO chaincodeEventDTO = new ChaincodeEventDTO();
+        TxValidationTypeDTO txValidationTypeDTO = new TxValidationTypeDTO();
 
-        chaincodeEventDTO.setId( chaincodeEvent.getId() );
-        chaincodeEventDTO.setTransaction( transactionToTransactionDTO( chaincodeEvent.getTransaction() ) );
-        chaincodeEventDTO.setBlock( blockToBlockDTO( chaincodeEvent.getBlock() ) );
-        chaincodeEventDTO.setChaincode( chaincodeToChaincodeDTO( chaincodeEvent.getChaincode() ) );
-        chaincodeEventDTO.setEventName( chaincodeEvent.getEventName() );
-        byte[] content = chaincodeEvent.getContent();
-        if ( content != null ) {
-            chaincodeEventDTO.setContent( Arrays.copyOf( content, content.length ) );
-        }
+        txValidationTypeDTO.setDescriptionType( txValidationType.getDescriptionType() );
+        txValidationTypeDTO.setId( txValidationType.getId() );
+        txValidationTypeDTO.setTransactions( transactionListToTransactionDTOList( txValidationType.getTransactions() ) );
 
-        return chaincodeEventDTO;
+        return txValidationTypeDTO;
     }
 
-    protected List<ChaincodeEventDTO> chaincodeEventListToChaincodeEventDTOList(List<ChaincodeEvent> list) {
-        if ( list == null ) {
+    protected TypeTransactionDTO typeTransactionToTypeTransactionDTO(TypeTransaction typeTransaction) {
+        if ( typeTransaction == null ) {
             return null;
         }
 
-        List<ChaincodeEventDTO> list1 = new ArrayList<ChaincodeEventDTO>( list.size() );
-        for ( ChaincodeEvent chaincodeEvent : list ) {
-            list1.add( chaincodeEventToChaincodeEventDTO( chaincodeEvent ) );
-        }
+        TypeTransactionDTO typeTransactionDTO = new TypeTransactionDTO();
 
-        return list1;
+        typeTransactionDTO.setDescriptionType( typeTransaction.getDescriptionType() );
+        typeTransactionDTO.setId( typeTransaction.getId() );
+        typeTransactionDTO.setTransactions( transactionListToTransactionDTOList( typeTransaction.getTransactions() ) );
+
+        return typeTransactionDTO;
     }
 
     protected TransactionDTO transactionToTransactionDTO(Transaction transaction) {
@@ -571,19 +571,19 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         TransactionDTO transactionDTO = new TransactionDTO();
 
-        transactionDTO.setTxId( transaction.getTxId() );
         transactionDTO.setBlock( blockToBlockDTO( transaction.getBlock() ) );
-        transactionDTO.setTimestampTx( transaction.getTimestampTx() );
-        transactionDTO.setTypeTransaction( typeTransactionToTypeTransactionDTO( transaction.getTypeTransaction() ) );
-        transactionDTO.setTxValidationType( txValidationTypeToTxValidationTypeDTO( transaction.getTxValidationType() ) );
+        transactionDTO.setChaincodeEvents( chaincodeEventListToChaincodeEventDTOList( transaction.getChaincodeEvents() ) );
         transactionDTO.setCreator( creatorToCreatorDTO( transaction.getCreator() ) );
+        transactionDTO.setEndorsements( endorsementListToEndorsementDTOList( transaction.getEndorsements() ) );
         transactionDTO.setOperation( operationToOperationDTO( transaction.getOperation() ) );
         byte[] payload = transaction.getPayload();
         if ( payload != null ) {
             transactionDTO.setPayload( Arrays.copyOf( payload, payload.length ) );
         }
-        transactionDTO.setEndorsements( endorsementListToEndorsementDTOList( transaction.getEndorsements() ) );
-        transactionDTO.setChaincodeEvents( chaincodeEventListToChaincodeEventDTOList( transaction.getChaincodeEvents() ) );
+        transactionDTO.setTimestampTx( transaction.getTimestampTx() );
+        transactionDTO.setTxId( transaction.getTxId() );
+        transactionDTO.setTxValidationType( txValidationTypeToTxValidationTypeDTO( transaction.getTxValidationType() ) );
+        transactionDTO.setTypeTransaction( typeTransactionToTypeTransactionDTO( transaction.getTypeTransaction() ) );
 
         return transactionDTO;
     }
@@ -595,11 +595,11 @@ public class OperationArgMapperImpl implements OperationArgMapper {
 
         OperationDTO operationDTO = new OperationDTO();
 
-        operationDTO.setId( operation.getId() );
         operationDTO.setChaincode( chaincodeToChaincodeDTO( operation.getChaincode() ) );
         operationDTO.setChaincodeType( operation.getChaincodeType() );
-        operationDTO.setTransactions( transactionListToTransactionDTOList( operation.getTransactions() ) );
+        operationDTO.setId( operation.getId() );
         operationDTO.setOperationArgs( toDto( operation.getOperationArgs() ) );
+        operationDTO.setTransactions( transactionListToTransactionDTOList( operation.getTransactions() ) );
 
         return operationDTO;
     }

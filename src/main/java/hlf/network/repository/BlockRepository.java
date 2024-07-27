@@ -1,7 +1,7 @@
 package hlf.network.repository;
 
 import java.util.List;
-
+import hlf.network.dto.BlockListDTO;
 import hlf.network.dto.BlockTreeListDTO;
 import hlf.network.entity.Block;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
@@ -41,7 +41,7 @@ public class BlockRepository implements PanacheRepositoryBase<Block, Integer> {
      * @return
      */
     public List<BlockTreeListDTO> getBlockTreeList(int page, int size) {
-        String query = "SELECT new hlf.network.entity.Block(T.block.blockNumber, C.channelName, T.block.nextHash, T.timestampTx) "
+        String query = "SELECT new hlf.network.dto.BlockTreeListDTO(T.block.blockNumber, C.channelName, T.block.nextHash, T.timestampTx) "
                 +
                 "FROM Transaction T " +
                 "JOIN T.block B " +
@@ -52,7 +52,25 @@ public class BlockRepository implements PanacheRepositoryBase<Block, Integer> {
                 "   WHERE T2.block.blockNumber = T.block.blockNumber" +
                 ")";
         List<BlockTreeListDTO> result = entityManager.createQuery(query, BlockTreeListDTO.class)
-                .setFirstResult((page - 1) * size).setMaxResults(size).getResultList();
+                .setFirstResult((page) * size).setMaxResults(size).getResultList();
         return result;
     }
+
+    /**
+     * @param page, the number of the page
+     * @param size, the size of each page
+     * @return
+     */
+    public List<BlockListDTO> getBlockListDTO(int page, int size) {
+        String query = "SELECT new hlf.network.dto.BlockListDTO(B.blockNumber,C.channelName,B.data,B.nextHash,COUNT(T.txId)) "
+                +
+                "FROM Block B " +
+                "JOIN B.channel C " +
+                "LEFT JOIN B.transactions T " +
+                "GROUP BY B.blockNumber, C.channelName, B.data, B.nextHash";
+            List<BlockListDTO> result = entityManager.createQuery(query, BlockListDTO.class)
+                    .setFirstResult((page) * size).setMaxResults(size).getResultList();
+            return result;
+    }
+
 }

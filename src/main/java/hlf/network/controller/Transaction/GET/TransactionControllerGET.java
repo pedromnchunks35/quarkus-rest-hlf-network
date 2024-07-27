@@ -1,5 +1,9 @@
 package hlf.network.controller.Transaction.GET;
 
+import java.util.List;
+
+import hlf.network.dto.TransactionByOrgDTO;
+import hlf.network.dto.TransactionListDTO;
 import hlf.network.repository.TransactionRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -10,15 +14,10 @@ public class TransactionControllerGET implements TransactionControllerInterfaceG
     @Inject
     TransactionRepository transactionRepository;
 
-    public Response getNumberOfTransactionsController() {
-        Long result = transactionRepository.count();
-        return Response.ok(result).status(Response.Status.ACCEPTED).build();
-    }
-
     @Override
     public Response getNumberOfTransactions() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNumberOfTransactions'");
+        Long result = transactionRepository.count();
+        return Response.ok(result).status(Response.Status.ACCEPTED).build();
     }
 
     @Override
@@ -32,13 +31,16 @@ public class TransactionControllerGET implements TransactionControllerInterfaceG
 
     @Override
     public Response getTransactionsPerOrganization() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTransactionsPerOrganization'");
+        List<TransactionByOrgDTO> transactionByOrgDTO = transactionRepository.getTransactionByOrgPerc();
+        return Response.ok(transactionByOrgDTO).status(Response.Status.ACCEPTED).build();
     }
 
     @Override
     public Response getTransactionsList(int page, int size) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTransactionsList'");
+        if (page < 0 || size < 0) {
+            return Response.ok("Please provide a valid page and size").status(Response.Status.BAD_REQUEST).build();
+        }
+        List<TransactionListDTO> result = transactionRepository.getTransactionList(page, size);
+        return Response.ok(result).status(Response.Status.ACCEPTED).build();
     }
 }
