@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: hlf.network.mapper.BlockMapperTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.222 s -- in hlf.network.mapper.BlockMapperTest

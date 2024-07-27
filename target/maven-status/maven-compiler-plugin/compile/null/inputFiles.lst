@@ -2,8 +2,8 @@
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/controller/Block/GET/BlockControllerInterfaceGET.java
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/controller/Chaincode/GET/ChaincodeControllerGET.java
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/controller/Chaincode/GET/ChaincodeControllerInterfaceGET.java
-/run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/controller/Channels/GET/ChannelControllerGET.java
-/run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/controller/Channels/GET/ChannelControllerInterfaceGET.java
+/run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/controller/Channel/GET/ChannelControllerGET.java
+/run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/controller/Channel/GET/ChannelControllerInterfaceGET.java
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/controller/Network/GET/NetworkControllerGET.java
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/controller/Network/GET/NetworkControllerInterfaceGET.java
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/controller/Transaction/GET/TransactionControllerGET.java
@@ -11,6 +11,7 @@
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/converter/ByteArrayToStringConverter.java
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/dto/BlockDTO.java
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/dto/BlockListDTO.java
+/run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/dto/BlockTreeListDTO.java
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/dto/ChaincodeDTO.java
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/dto/ChaincodeEventDTO.java
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/dto/ChaincodeListDTO.java
@@ -24,8 +25,8 @@
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/dto/PeerListDTO.java
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/dto/TransactionByOrgDTO.java
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/dto/TransactionDTO.java
+/run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/dto/TransactionListDTO.java
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/dto/TransactionTreeListDTO.java
-/run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/dto/TransactionsListDTO.java
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/dto/TxValidationTypeDTO.java
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/dto/TypeTransactionDTO.java
 /run/media/pedromn35/disk2-home/projects/quarkus-rest-hlf-network/src/main/java/hlf/network/entity/Block.java
