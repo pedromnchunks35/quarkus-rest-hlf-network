@@ -1,0 +1,27 @@
+{
+    "availableReplicas": 1,
+    "collisionCount": null,
+    "conditions": [
+        {
+            "lastTransitionTime": "2024-07-28T12:15:21Z",
+            "lastUpdateTime": "2024-07-28T12:15:21Z",
+            "message": "Deployment has minimum availability.",
+            "reason": "MinimumReplicasAvailable",
+            "status": "True",
+            "type": "Available"
+        },
+        {
+            "lastTransitionTime": "2024-07-28T12:14:35Z",
+            "lastUpdateTime": "2024-07-28T12:15:21Z",
+            "message": "ReplicaSet \"orgx-peer1-deployment-cf7d6488\" has successfully progressed.",
+            "reason": "NewReplicaSetAvailable",
+            "status": "True",
+            "type": "Progressing"
+        }
+    ],
+    "observedGeneration": 1,
+    "readyReplicas": 1,
+    "replicas": 1,
+    "unavailableReplicas": null,
+    "updatedReplicas": 1
+}
