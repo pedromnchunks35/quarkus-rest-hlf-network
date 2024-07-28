@@ -16,7 +16,7 @@ public class NetworkServiceGET {
     NetworkControllerGET networkControllerGET;
 
     @GET
-    @Path("{page}/{size}")
+    @Path("/{page}/{size}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getNetworkComponentsList(@PathParam("page") int page, @PathParam("size") int size) {
@@ -27,7 +27,7 @@ public class NetworkServiceGET {
     @Path("peerComps/{page}/{size}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPeerList(int page, int size) {
+    public Response getPeerList(@PathParam("page") int page, @PathParam("size") int size) {
         return networkControllerGET.getPeerList(page, size);
     }
 

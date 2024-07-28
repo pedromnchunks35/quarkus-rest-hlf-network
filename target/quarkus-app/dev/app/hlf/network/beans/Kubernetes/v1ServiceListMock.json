@@ -1,0 +1,324 @@
+[
+    {
+        "apiVersion": null,
+        "kind": null,
+        "metadata": {
+          "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Service\",\"metadata\":{\"annotations\":{},\"labels\":{\"ledger\":\"orgx-couch-peer1\",\"type-component\":\"peer\"},\"name\":\"orgx-peer1\",\"namespace\":\"default\"},\"spec\":{\"ports\":[{\"name\":\"tcp\",\"nodePort\":30016,\"port\":80,\"protocol\":\"TCP\",\"targetPort\":7777},{\"name\":\"tcp-grpc-automation-project\",\"nodePort\":30046,\"port\":82,\"protocol\":\"TCP\",\"targetPort\":2000},{\"name\":\"operations\",\"nodePort\":30060,\"port\":83,\"protocol\":\"TCP\",\"targetPort\":9008}],\"selector\":{\"service\":\"orgx-peer1\"},\"type\":\"NodePort\"}}\n"
+          },
+          "clusterName": null,
+          "creationTimestamp": "2024-07-28T12:14:36Z",
+          "deletionGracePeriodSeconds": null,
+          "deletionTimestamp": null,
+          "finalizers": null,
+          "generateName": null,
+          "generation": null,
+          "labels": {
+            "ledger": "orgx-couch-peer1",
+            "type-component": "peer"
+          },
+          "managedFields": [
+            {
+              "apiVersion": "v1",
+              "fieldsType": "FieldsV1",
+              "fieldsV1": {
+                "f:metadata": {
+                  "f:annotations": {
+                    ".": {
+      
+                    },
+                    "f:kubectl.kubernetes.io/last-applied-configuration": {
+      
+                    }
+                  },
+                  "f:labels": {
+                    ".": {
+      
+                    },
+                    "f:ledger": {
+      
+                    },
+                    "f:type-component": {
+      
+                    }
+                  }
+                },
+                "f:spec": {
+                  "f:externalTrafficPolicy": {
+      
+                  },
+                  "f:internalTrafficPolicy": {
+      
+                  },
+                  "f:ports": {
+                    ".": {
+      
+                    },
+                    "k:{\"port\":80,\"protocol\":\"TCP\"}": {
+                      ".": {
+      
+                      },
+                      "f:name": {
+      
+                      },
+                      "f:nodePort": {
+      
+                      },
+                      "f:port": {
+      
+                      },
+                      "f:protocol": {
+      
+                      },
+                      "f:targetPort": {
+      
+                      }
+                    },
+                    "k:{\"port\":82,\"protocol\":\"TCP\"}": {
+                      ".": {
+      
+                      },
+                      "f:name": {
+      
+                      },
+                      "f:nodePort": {
+      
+                      },
+                      "f:port": {
+      
+                      },
+                      "f:protocol": {
+      
+                      },
+                      "f:targetPort": {
+      
+                      }
+                    },
+                    "k:{\"port\":83,\"protocol\":\"TCP\"}": {
+                      ".": {
+      
+                      },
+                      "f:name": {
+      
+                      },
+                      "f:nodePort": {
+      
+                      },
+                      "f:port": {
+      
+                      },
+                      "f:protocol": {
+      
+                      },
+                      "f:targetPort": {
+      
+                      }
+                    }
+                  },
+                  "f:selector": {
+      
+                  },
+                  "f:sessionAffinity": {
+      
+                  },
+                  "f:type": {
+      
+                  }
+                }
+              },
+              "manager": "kubectl-client-side-apply",
+              "operation": "Update",
+              "subresource": null,
+              "time": "2024-07-28T12:14:36Z"
+            }
+          ],
+          "name": "orgx-peer1",
+          "namespace": "default",
+          "ownerReferences": null,
+          "resourceVersion": "8381984",
+          "selfLink": null,
+          "uid": "fe3d13a6-217c-492e-99ac-519bbcea5122"
+        },
+        "spec": {
+          "allocateLoadBalancerNodePorts": null,
+          "clusterIP": "10.108.36.6",
+          "clusterIPs": [
+            "10.108.36.6"
+          ],
+          "externalIPs": null,
+          "externalName": null,
+          "externalTrafficPolicy": "Cluster",
+          "healthCheckNodePort": null,
+          "internalTrafficPolicy": "Cluster",
+          "ipFamilies": [
+            "IPv4"
+          ],
+          "ipFamilyPolicy": "SingleStack",
+          "loadBalancerClass": null,
+          "loadBalancerIP": null,
+          "loadBalancerSourceRanges": null,
+          "ports": [
+            {
+              "appProtocol": null,
+              "name": "tcp",
+              "nodePort": 30016,
+              "port": 80,
+              "protocol": "TCP",
+              "targetPort": null
+            },
+            {
+              "appProtocol": null,
+              "name": "tcp-grpc-automation-project",
+              "nodePort": 30046,
+              "port": 82,
+              "protocol": "TCP",
+              "targetPort": null
+            },
+            {
+              "appProtocol": null,
+              "name": "operations",
+              "nodePort": 30060,
+              "port": 83,
+              "protocol": "TCP",
+              "targetPort": null
+            }
+          ],
+          "publishNotReadyAddresses": null,
+          "selector": {
+            "service": "orgx-peer1"
+          },
+          "sessionAffinity": "None",
+          "sessionAffinityConfig": null,
+          "type": "NodePort"
+        },
+        "status": {
+          "conditions": null,
+          "loadBalancer": {
+            "ingress": null
+          }
+        }
+      },
+      {
+        "apiVersion": null,
+        "kind": null,
+        "metadata": {
+          "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Service\",\"metadata\":{\"annotations\":{},\"name\":\"basic-chaincode\",\"namespace\":\"default\"},\"spec\":{\"ports\":[{\"name\":\"tcp\",\"port\":80,\"protocol\":\"TCP\",\"targetPort\":80}],\"selector\":{\"service\":\"basic-chaincode\"}}}\n"
+          },
+          "clusterName": null,
+          "creationTimestamp": "2024-07-21T17:40:30Z",
+          "deletionGracePeriodSeconds": null,
+          "deletionTimestamp": null,
+          "finalizers": null,
+          "generateName": null,
+          "generation": null,
+          "labels": null,
+          "managedFields": [
+            {
+              "apiVersion": "v1",
+              "fieldsType": "FieldsV1",
+              "fieldsV1": {
+                "f:metadata": {
+                  "f:annotations": {
+                    ".": {
+      
+                    },
+                    "f:kubectl.kubernetes.io/last-applied-configuration": {
+      
+                    }
+                  }
+                },
+                "f:spec": {
+                  "f:internalTrafficPolicy": {
+      
+                  },
+                  "f:ports": {
+                    ".": {
+      
+                    },
+                    "k:{\"port\":80,\"protocol\":\"TCP\"}": {
+                      ".": {
+      
+                      },
+                      "f:name": {
+      
+                      },
+                      "f:port": {
+      
+                      },
+                      "f:protocol": {
+      
+                      },
+                      "f:targetPort": {
+      
+                      }
+                    }
+                  },
+                  "f:selector": {
+      
+                  },
+                  "f:sessionAffinity": {
+      
+                  },
+                  "f:type": {
+      
+                  }
+                }
+              },
+              "manager": "kubectl-client-side-apply",
+              "operation": "Update",
+              "subresource": null,
+              "time": "2024-07-21T17:40:30Z"
+            }
+          ],
+          "name": "basic-chaincode",
+          "namespace": "default",
+          "ownerReferences": null,
+          "resourceVersion": "7472998",
+          "selfLink": null,
+          "uid": "f84a24ca-876d-48e4-abf3-23c3620650cf"
+        },
+        "spec": {
+          "allocateLoadBalancerNodePorts": null,
+          "clusterIP": "10.97.17.213",
+          "clusterIPs": [
+            "10.97.17.213"
+          ],
+          "externalIPs": null,
+          "externalName": null,
+          "externalTrafficPolicy": null,
+          "healthCheckNodePort": null,
+          "internalTrafficPolicy": "Cluster",
+          "ipFamilies": [
+            "IPv4"
+          ],
+          "ipFamilyPolicy": "SingleStack",
+          "loadBalancerClass": null,
+          "loadBalancerIP": null,
+          "loadBalancerSourceRanges": null,
+          "ports": [
+            {
+              "appProtocol": null,
+              "name": "tcp",
+              "nodePort": null,
+              "port": 80,
+              "protocol": "TCP",
+              "targetPort": null
+            }
+          ],
+          "publishNotReadyAddresses": null,
+          "selector": {
+            "service": "basic-chaincode"
+          },
+          "sessionAffinity": "None",
+          "sessionAffinityConfig": null,
+          "type": "ClusterIP"
+        },
+        "status": {
+          "conditions": null,
+          "loadBalancer": {
+            "ingress": null
+          }
+        }
+      }
+]

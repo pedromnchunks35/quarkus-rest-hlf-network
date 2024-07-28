@@ -1,0 +1,617 @@
+{
+    "apiVersion": null,
+    "kind": null,
+    "metadata": {
+      "annotations": {
+        "deployment.kubernetes.io/revision": "1",
+        "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"apps/v1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{},\"labels\":{\"ledger\":\"orgx-couch-peer1\",\"type-component\":\"peer\"},\"name\":\"orgx-peer1-deployment\",\"namespace\":\"default\"},\"spec\":{\"replicas\":1,\"selector\":{\"matchLabels\":{\"deployment\":\"orgx-peer1\"}},\"template\":{\"metadata\":{\"labels\":{\"deployment\":\"orgx-peer1\",\"general\":\"all-peers\",\"ledger\":\"orgx-couch-peer1\",\"service\":\"orgx-peer1\",\"type-component\":\"peer\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"FABRIC_CFG_PATH\",\"value\":\"/tmp/hyperledger/orgx-peer1/config\"}],\"image\":\"hyperledger/fabric-peer\",\"lifecycle\":{\"postStart\":{\"exec\":{\"command\":[\"/bin/sh\",\"-c\",\"sleep 30s \\u0026\\u0026\\napt update \\u0026\\u0026\\napt install -y jq\\nchmod +777 /tmp/hyperledger/orgx-peer1/config/builder/bin/*\\n\"]}}},\"name\":\"orgx-peer1-container\",\"volumeMounts\":[{\"mountPath\":\"/tmp/hyperledger/orgx-peer1/\",\"name\":\"orgx-peer1-volume\"}]},{\"env\":[{\"name\":\"FABRIC_CFG_PATH\",\"value\":\"/tmp/hyperledger/orgx-peer1/config\"}],\"image\":\"pedrosilvamnchunks/peer-grpc:latest\",\"name\":\"orgx-peer1-grpc-automation-container\",\"volumeMounts\":[{\"mountPath\":\"/tmp/hyperledger/orgx-peer1\",\"name\":\"orgx-peer1-volume\"}]}],\"volumes\":[{\"name\":\"orgx-peer1-volume\",\"persistentVolumeClaim\":{\"claimName\":\"pvc-orgx-peer1\"}}]}}}}\n"
+      },
+      "clusterName": null,
+      "creationTimestamp": "2024-07-28T12:14:35Z",
+      "deletionGracePeriodSeconds": null,
+      "deletionTimestamp": null,
+      "finalizers": null,
+      "generateName": null,
+      "generation": 1,
+      "labels": {
+        "ledger": "orgx-couch-peer1",
+        "type-component": "peer"
+      },
+      "managedFields": [
+        {
+          "apiVersion": "apps/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:annotations": {
+                ".": {
+  
+                },
+                "f:kubectl.kubernetes.io/last-applied-configuration": {
+  
+                }
+              },
+              "f:labels": {
+                ".": {
+  
+                },
+                "f:ledger": {
+  
+                },
+                "f:type-component": {
+  
+                }
+              }
+            },
+            "f:spec": {
+              "f:progressDeadlineSeconds": {
+  
+              },
+              "f:replicas": {
+  
+              },
+              "f:revisionHistoryLimit": {
+  
+              },
+              "f:selector": {
+  
+              },
+              "f:strategy": {
+                "f:rollingUpdate": {
+                  ".": {
+  
+                  },
+                  "f:maxSurge": {
+  
+                  },
+                  "f:maxUnavailable": {
+  
+                  }
+                },
+                "f:type": {
+  
+                }
+              },
+              "f:template": {
+                "f:metadata": {
+                  "f:labels": {
+                    ".": {
+  
+                    },
+                    "f:deployment": {
+  
+                    },
+                    "f:general": {
+  
+                    },
+                    "f:ledger": {
+  
+                    },
+                    "f:service": {
+  
+                    },
+                    "f:type-component": {
+  
+                    }
+                  }
+                },
+                "f:spec": {
+                  "f:containers": {
+                    "k:{\"name\":\"orgx-peer1-container\"}": {
+                      ".": {
+  
+                      },
+                      "f:env": {
+                        ".": {
+  
+                        },
+                        "k:{\"name\":\"FABRIC_CFG_PATH\"}": {
+                          ".": {
+  
+                          },
+                          "f:name": {
+  
+                          },
+                          "f:value": {
+  
+                          }
+                        }
+                      },
+                      "f:image": {
+  
+                      },
+                      "f:imagePullPolicy": {
+  
+                      },
+                      "f:lifecycle": {
+                        ".": {
+  
+                        },
+                        "f:postStart": {
+                          ".": {
+  
+                          },
+                          "f:exec": {
+                            ".": {
+  
+                            },
+                            "f:command": {
+  
+                            }
+                          }
+                        }
+                      },
+                      "f:name": {
+  
+                      },
+                      "f:resources": {
+  
+                      },
+                      "f:terminationMessagePath": {
+  
+                      },
+                      "f:terminationMessagePolicy": {
+  
+                      },
+                      "f:volumeMounts": {
+                        ".": {
+  
+                        },
+                        "k:{\"mountPath\":\"/tmp/hyperledger/orgx-peer1/\"}": {
+                          ".": {
+  
+                          },
+                          "f:mountPath": {
+  
+                          },
+                          "f:name": {
+  
+                          }
+                        }
+                      }
+                    },
+                    "k:{\"name\":\"orgx-peer1-grpc-automation-container\"}": {
+                      ".": {
+  
+                      },
+                      "f:env": {
+                        ".": {
+  
+                        },
+                        "k:{\"name\":\"FABRIC_CFG_PATH\"}": {
+                          ".": {
+  
+                          },
+                          "f:name": {
+  
+                          },
+                          "f:value": {
+  
+                          }
+                        }
+                      },
+                      "f:image": {
+  
+                      },
+                      "f:imagePullPolicy": {
+  
+                      },
+                      "f:name": {
+  
+                      },
+                      "f:resources": {
+  
+                      },
+                      "f:terminationMessagePath": {
+  
+                      },
+                      "f:terminationMessagePolicy": {
+  
+                      },
+                      "f:volumeMounts": {
+                        ".": {
+  
+                        },
+                        "k:{\"mountPath\":\"/tmp/hyperledger/orgx-peer1\"}": {
+                          ".": {
+  
+                          },
+                          "f:mountPath": {
+  
+                          },
+                          "f:name": {
+  
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "f:dnsPolicy": {
+  
+                  },
+                  "f:restartPolicy": {
+  
+                  },
+                  "f:schedulerName": {
+  
+                  },
+                  "f:securityContext": {
+  
+                  },
+                  "f:terminationGracePeriodSeconds": {
+  
+                  },
+                  "f:volumes": {
+                    ".": {
+  
+                    },
+                    "k:{\"name\":\"orgx-peer1-volume\"}": {
+                      ".": {
+  
+                      },
+                      "f:name": {
+  
+                      },
+                      "f:persistentVolumeClaim": {
+                        ".": {
+  
+                        },
+                        "f:claimName": {
+  
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "manager": "kubectl-client-side-apply",
+          "operation": "Update",
+          "subresource": null,
+          "time": "2024-07-28T12:14:35Z"
+        },
+        {
+          "apiVersion": "apps/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:annotations": {
+                "f:deployment.kubernetes.io/revision": {
+  
+                }
+              }
+            },
+            "f:status": {
+              "f:availableReplicas": {
+  
+              },
+              "f:conditions": {
+                ".": {
+  
+                },
+                "k:{\"type\":\"Available\"}": {
+                  ".": {
+  
+                  },
+                  "f:lastTransitionTime": {
+  
+                  },
+                  "f:lastUpdateTime": {
+  
+                  },
+                  "f:message": {
+  
+                  },
+                  "f:reason": {
+  
+                  },
+                  "f:status": {
+  
+                  },
+                  "f:type": {
+  
+                  }
+                },
+                "k:{\"type\":\"Progressing\"}": {
+                  ".": {
+  
+                  },
+                  "f:lastTransitionTime": {
+  
+                  },
+                  "f:lastUpdateTime": {
+  
+                  },
+                  "f:message": {
+  
+                  },
+                  "f:reason": {
+  
+                  },
+                  "f:status": {
+  
+                  },
+                  "f:type": {
+  
+                  }
+                }
+              },
+              "f:observedGeneration": {
+  
+              },
+              "f:readyReplicas": {
+  
+              },
+              "f:replicas": {
+  
+              },
+              "f:updatedReplicas": {
+  
+              }
+            }
+          },
+          "manager": "kube-controller-manager",
+          "operation": "Update",
+          "subresource": "status",
+          "time": "2024-07-28T12:15:21Z"
+        }
+      ],
+      "name": "orgx-peer1-deployment",
+      "namespace": "default",
+      "ownerReferences": null,
+      "resourceVersion": "8382076",
+      "selfLink": null,
+      "uid": "c2eb7e39-2003-4916-9005-cc69220dece0"
+    },
+    "spec": {
+      "minReadySeconds": null,
+      "paused": null,
+      "progressDeadlineSeconds": 600,
+      "replicas": 1,
+      "revisionHistoryLimit": 10,
+      "selector": {
+        "matchExpressions": null,
+        "matchLabels": {
+          "deployment": "orgx-peer1"
+        }
+      },
+      "strategy": null,
+      "template": {
+        "metadata": {
+          "annotations": null,
+          "clusterName": null,
+          "creationTimestamp": null,
+          "deletionGracePeriodSeconds": null,
+          "deletionTimestamp": null,
+          "finalizers": null,
+          "generateName": null,
+          "generation": null,
+          "labels": {
+            "deployment": "orgx-peer1",
+            "general": "all-peers",
+            "ledger": "orgx-couch-peer1",
+            "service": "orgx-peer1",
+            "type-component": "peer"
+          },
+          "managedFields": null,
+          "name": null,
+          "namespace": null,
+          "ownerReferences": null,
+          "resourceVersion": null,
+          "selfLink": null,
+          "uid": null
+        },
+        "spec": {
+          "activeDeadlineSeconds": null,
+          "affinity": null,
+          "automountServiceAccountToken": null,
+          "containers": [
+            {
+              "args": null,
+              "command": null,
+              "env": [
+                {
+                  "name": "FABRIC_CFG_PATH",
+                  "value": "/tmp/hyperledger/orgx-peer1/config",
+                  "valueFrom": null
+                }
+              ],
+              "envFrom": null,
+              "image": "hyperledger/fabric-peer",
+              "imagePullPolicy": "Always",
+              "lifecycle": {
+                "postStart": {
+                  "exec": {
+                    "command": [
+                      "/bin/sh",
+                      "-c",
+                      "sleep 30s &&\napt update &&\napt install -y jq\nchmod +777 /tmp/hyperledger/orgx-peer1/config/builder/bin/*\n"
+                    ]
+                  },
+                  "httpGet": null,
+                  "tcpSocket": null
+                },
+                "preStop": null
+              },
+              "livenessProbe": null,
+              "name": "orgx-peer1-container",
+              "ports": null,
+              "readinessProbe": null,
+              "resources": {
+                "limits": null,
+                "requests": null
+              },
+              "securityContext": null,
+              "startupProbe": null,
+              "stdin": null,
+              "stdinOnce": null,
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "tty": null,
+              "volumeDevices": null,
+              "volumeMounts": [
+                {
+                  "mountPath": "/tmp/hyperledger/orgx-peer1/",
+                  "mountPropagation": null,
+                  "name": "orgx-peer1-volume",
+                  "readOnly": null,
+                  "subPath": null,
+                  "subPathExpr": null
+                }
+              ],
+              "workingDir": null
+            },
+            {
+              "args": null,
+              "command": null,
+              "env": [
+                {
+                  "name": "FABRIC_CFG_PATH",
+                  "value": "/tmp/hyperledger/orgx-peer1/config",
+                  "valueFrom": null
+                }
+              ],
+              "envFrom": null,
+              "image": "pedrosilvamnchunks/peer-grpc:latest",
+              "imagePullPolicy": "Always",
+              "lifecycle": null,
+              "livenessProbe": null,
+              "name": "orgx-peer1-grpc-automation-container",
+              "ports": null,
+              "readinessProbe": null,
+              "resources": {
+                "limits": null,
+                "requests": null
+              },
+              "securityContext": null,
+              "startupProbe": null,
+              "stdin": null,
+              "stdinOnce": null,
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "tty": null,
+              "volumeDevices": null,
+              "volumeMounts": [
+                {
+                  "mountPath": "/tmp/hyperledger/orgx-peer1",
+                  "mountPropagation": null,
+                  "name": "orgx-peer1-volume",
+                  "readOnly": null,
+                  "subPath": null,
+                  "subPathExpr": null
+                }
+              ],
+              "workingDir": null
+            }
+          ],
+          "dnsConfig": null,
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": null,
+          "ephemeralContainers": null,
+          "hostAliases": null,
+          "hostIPC": null,
+          "hostNetwork": null,
+          "hostPID": null,
+          "hostname": null,
+          "imagePullSecrets": null,
+          "initContainers": null,
+          "nodeName": null,
+          "nodeSelector": null,
+          "os": null,
+          "overhead": null,
+          "preemptionPolicy": null,
+          "priority": null,
+          "priorityClassName": null,
+          "readinessGates": null,
+          "restartPolicy": "Always",
+          "runtimeClassName": null,
+          "schedulerName": "default-scheduler",
+          "securityContext": {
+            "fsGroup": null,
+            "fsGroupChangePolicy": null,
+            "runAsGroup": null,
+            "runAsNonRoot": null,
+            "runAsUser": null,
+            "seLinuxOptions": null,
+            "seccompProfile": null,
+            "supplementalGroups": null,
+            "sysctls": null,
+            "windowsOptions": null
+          },
+          "serviceAccount": null,
+          "serviceAccountName": null,
+          "setHostnameAsFQDN": null,
+          "shareProcessNamespace": null,
+          "subdomain": null,
+          "terminationGracePeriodSeconds": 30,
+          "tolerations": null,
+          "topologySpreadConstraints": null,
+          "volumes": [
+            {
+              "awsElasticBlockStore": null,
+              "azureDisk": null,
+              "azureFile": null,
+              "cephfs": null,
+              "cinder": null,
+              "configMap": null,
+              "csi": null,
+              "downwardAPI": null,
+              "emptyDir": null,
+              "ephemeral": null,
+              "fc": null,
+              "flexVolume": null,
+              "flocker": null,
+              "gcePersistentDisk": null,
+              "gitRepo": null,
+              "glusterfs": null,
+              "hostPath": null,
+              "iscsi": null,
+              "name": "orgx-peer1-volume",
+              "nfs": null,
+              "persistentVolumeClaim": {
+                "claimName": "pvc-orgx-peer1",
+                "readOnly": null
+              },
+              "photonPersistentDisk": null,
+              "portworxVolume": null,
+              "projected": null,
+              "quobyte": null,
+              "rbd": null,
+              "scaleIO": null,
+              "secret": null,
+              "storageos": null,
+              "vsphereVolume": null
+            }
+          ]
+        }
+      }
+    },
+    "status": {
+      "availableReplicas": 1,
+      "collisionCount": null,
+      "conditions": [
+        {
+          "lastTransitionTime": "2024-07-28T12:15:21Z",
+          "lastUpdateTime": "2024-07-28T12:15:21Z",
+          "message": "Deployment has minimum availability.",
+          "reason": "MinimumReplicasAvailable",
+          "status": "True",
+          "type": "Available"
+        },
+        {
+          "lastTransitionTime": "2024-07-28T12:14:35Z",
+          "lastUpdateTime": "2024-07-28T12:15:21Z",
+          "message": "ReplicaSet \"orgx-peer1-deployment-cf7d6488\" has successfully progressed.",
+          "reason": "NewReplicaSetAvailable",
+          "status": "True",
+          "type": "Progressing"
+        }
+      ],
+      "observedGeneration": 1,
+      "readyReplicas": 1,
+      "replicas": 1,
+      "unavailableReplicas": null,
+      "updatedReplicas": 1
+    }
+  }

@@ -1,0 +1,13 @@
+hlf/network/repository/ChaincodeEventRepositoryTest.class
+hlf/network/repository/OperationRepositoryTest.class
+hlf/network/repository/EndorsementRepositoryTest.class
+hlf/network/repository/ChannelRepositoryTest.class
+hlf/network/repository/TypeTransactionRepositoryTest.class
+hlf/network/repository/CreatorRepositoryTest.class
+hlf/network/repository/BlockRepositoryTest.class
+hlf/network/mapper/BlockMapperTest.class
+hlf/network/repository/ChaincodeRepositoryTest.class
+hlf/network/repository/TransactionRepositoryTest.class
+hlf/network/repository/NetworkRepositoryTest.class
+hlf/network/repository/OperationArgRepositoryTest.class
+hlf/network/repository/TxValidationTypeRepositoryTest.class

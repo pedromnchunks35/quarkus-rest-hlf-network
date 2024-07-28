@@ -31,7 +31,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-07-27T15:45:08+0200",
+    date = "2024-07-28T22:04:54+0200",
     comments = "version: 1.3.1.Final, compiler: Eclipse JDT (IDE) 3.39.0.v20240620-1855, environment: Java 17.0.11 (Eclipse Adoptium)"
 )
 public class TxValidationTypeMapperImpl implements TxValidationTypeMapper {
